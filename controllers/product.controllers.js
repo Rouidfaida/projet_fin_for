@@ -6,15 +6,15 @@ exports.addProducts = async (req, res) => {
   const { title, description, quantity, imageUrl ,category,price,quantityStock,} = req.body;
 
   const newProduct = new Product({
+   
     title,
     description,
     quantity,
     price,
-    imageUrl,category,quantityStock
+    category,quantityStock,
+    imageUrl
   });
-  if( req.file){
-    newProduct.imageUrl = req.file.path
-  }
+ 
   try {
     await newProduct.save();
     res.send(newProduct);

@@ -22,10 +22,7 @@ const handleSubmit=(e)=>{
 }
 const {users,loading} = useSelector(state => state.alluser)
 
-useEffect(() => {
-  dispatch(getUsers())
-    
-}, [])
+
     return (
 
   <div>

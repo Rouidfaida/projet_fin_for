@@ -6,7 +6,6 @@ import { getUsers } from '../redux/userAction'
 import Login from './Login'
 import Navbare from './Navbare'
 import ProductList from './ProductList'
-import UserList from './UserList'
 // import ProductCard from './ProductCard'
 
 

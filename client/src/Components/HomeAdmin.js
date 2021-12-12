@@ -6,14 +6,11 @@ import { getUsers } from '../redux/userAction'
 const HomeAdmin = () => {
     const {users,loading} = useSelector(state => state.alluser)
 const dispatch = useDispatch()
-useEffect(() => {
-  dispatch(getUsers())
-    
-}, [])
+
     return (
         <div>
             
-            {                loading?<h1>...loading</h1>:users.userRole==='Manager'?<Navigate to='/admin'/>:<Navigate to='/'/>
+            {loading?<h1>...loading</h1>:users.userRole==='Manager'?<Navigate to='/admin'/>:<Navigate to='/'/>
 }
         </div>
     )

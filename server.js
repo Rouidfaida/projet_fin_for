@@ -14,7 +14,7 @@ app.use('/categorie',categorie)
 app.use('/commande',commande)
 
 
-app.use('/uploads',express.static('uploads'))
+// app.use('/uploads',express.static('uploads'))
 
 let PORT = process.env.PORT ||5000;
 app.listen(PORT,(err)=>err? console.log(err):console.log(`server is running ${PORT}`));

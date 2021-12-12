@@ -14,6 +14,7 @@ import AddProduct from './Components/AddProduct';
 import Info from './Components/Info';
 import CommandeUser from './Components/CommandeUser';
 import HomeAdmin from './Components/HomeAdmin';
+import UsersList from './Components/UsersList';
 // import 'antd/dist/antd.css';
 function App() {
   
@@ -32,6 +33,7 @@ function App() {
         <Route exact path="/infos/:id" element={<Info/>}/>
         <Route exact path='/commande' element={<CommandeUser/>}/>
         <Route exact path='/homeAdmin' element={<HomeAdmin/>}/>
+        <Route exact path='/getuse' element={<UsersList/>}/>
 
         </Routes>
       </Router>

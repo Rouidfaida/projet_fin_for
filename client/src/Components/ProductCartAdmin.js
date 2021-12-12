@@ -13,21 +13,18 @@ import EditProduct from './EditProduct';
 import { getUsers } from '../redux/userAction';
 const ProductCartAdmin = ({el}) => {
     const dispatch = useDispatch()
-    const handelSubmit=()=>
-{
-  dispatch(deleteProduct(el._id),
-  getProductlist())
-}
+
     return (
         <div>
                   <Card  style={{marginLeft:"30px",marginBottom:"20px",width:"200px"}}>
-      {/* <CardMedia
+      <CardMedia
         component="img"
         height="140"
-        image={`http://localhost:5000/${el.imageUrl}`}
+        image={el.imageUrl}
         alt="green iguana"
-      /> */}
-      <img src={`http://localhost:5000/${el.imageUrl}`}/>
+      />
+
+      {/* <img src={`http://localhost:5000/${el.imageUrl}`}/> */}
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {el.title}
@@ -46,7 +43,8 @@ const ProductCartAdmin = ({el}) => {
    <div style={{display:'flex'}}> 
       
       <EditProduct el={el}/>
-      <Button onClick={handelSubmit}>delete</Button>
+      <Button onClick={()=>dispatch(deleteProduct(el._id),
+  getProductlist())}>delete</Button>
       </div>
 
 

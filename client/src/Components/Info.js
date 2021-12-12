@@ -23,13 +23,7 @@ let pr =products.find(el=>el._id==params.id)
         <div>
             <Navbare/>
             <h1>{pr.title}</h1>
-            <input
-          
-          type="number"
-          min={1}
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-        />
+           
                             {/* <button className="btn cart" onClick={()=>dispatch(addToCart(pr._id))} > buy now</button> */}
 
 {/*           

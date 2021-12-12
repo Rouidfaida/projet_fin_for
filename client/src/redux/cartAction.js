@@ -28,13 +28,16 @@ export const addProductsCart = (newcommande) => async (dispatch) => {
 //     return{
 //         type:ADD_ITEM,
 //         payload:{id,title,quantity,price}
-//     }
+//     } export const removeFromCart = (id) => (dispatch,getState) => {
+  
 // }
-export const handelDelete=(id)=>{
-  return{
+export const handelDelete=(id)=> (dispatch,getState)=>{
+  dispatch({
       type:DELETE_ITEM,
       payload:id
-  }
+  })
+  localStorage.setItem('cartItem',JSON.stringify(getState().cart.cartItem))   
+
 }
 export const addToCart = (id,qty) =>async(dispatch,getState)=> {
   const res = await axios.get(`/product/getProductById/${id}`)

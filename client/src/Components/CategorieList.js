@@ -5,7 +5,7 @@ import CategorieCart from './CategorieCart'
 const CategorieList = ({categorie}) => {
 
     return (
-        <div>
+        <div style={{display:"flex"}}>
            {
                categorie.map((el,i)=><CategorieCart el={el} key={i}/>)
            } 

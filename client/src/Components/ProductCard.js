@@ -14,12 +14,7 @@ import { getUsers } from '../redux/userAction';
 
 const ProductCard = ({el}) => {
    
-    const {users,loading} = useSelector(state => state.alluser)
-    useEffect(() => {
-      dispatch(getUsers())
-        
-    }, [])
-const dispatch = useDispatch()
+  
 
     return (
         <div >

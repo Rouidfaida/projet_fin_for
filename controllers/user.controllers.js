@@ -69,6 +69,14 @@ exports.login=async(req,res)=>{
 exports.getUser=(req,res)=>{
     res.send(req.user);
 }
+exports.getUsers = async (req, res) => {
+    try {
+      let listUsers= await User.find()
+      res.send(listUsers)
+    } catch (error) {
+      res.status(500).json({errors: error.message});
+    }
+  };
 //add manager
 exports.addManager=async(req,res)=>{
     try {

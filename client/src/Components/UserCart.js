@@ -1,11 +1,12 @@
 import React from 'react'
 
-const AddUser = () => {
+const UserCart = ({el}) => {
     return (
         <div>
-            <h2>hello</h2>
+<h2>{el.firstName}</h2>
+
         </div>
     )
 }
 
-export default AddUser
+export default UserCart
