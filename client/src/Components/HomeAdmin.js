@@ -10,7 +10,7 @@ const dispatch = useDispatch()
     return (
         <div>
             
-            {loading?<h1>...loading</h1>:users.userRole==='Manager'?<Navigate to='/admin'/>:<Navigate to='/'/>
+            {users.userRole==='Admin'?<Navigate to='/admin'/>:users.userRole==='Manager'?<Navigate to='/manager'/>:<Navigate to='/'/>
 }
         </div>
     )

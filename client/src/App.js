@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Home from './Components/Home';
 import Navbare from './Components/Navbare';
-import Admin from './Components/Admin';
 import ProductList from './Components/ProductList';
 import Livre from './Components/Livre';
 
@@ -15,6 +14,10 @@ import Info from './Components/Info';
 import CommandeUser from './Components/CommandeUser';
 import HomeAdmin from './Components/HomeAdmin';
 import UsersList from './Components/UsersList';
+import Manager from './Components/Manager';
+import Admin from './Components/Admin';
+import ManagerList from './Components/ManagerList';
+import AddManager from './Components/AddManager';
 // import 'antd/dist/antd.css';
 function App() {
   
@@ -26,7 +29,7 @@ function App() {
         <Route exact path='/'element={<Home/>} />
         <Route exact path='/sign'element={<SignUp/>} />
         <Route exact path='/login' element={<Login/>}/>
-        <Route exact path='/admin' element={<Admin/>}/>
+        <Route exact path='/manager' element={<Manager/>}/>
         <Route exact path='/productList' element={<ProductList/>}/>
         <Route exact path='/addproduct' element={<AddProduct/>}/>
         <Route exact path='/livre' element={<Livre/>}/>
@@ -34,6 +37,9 @@ function App() {
         <Route exact path='/commande' element={<CommandeUser/>}/>
         <Route exact path='/homeAdmin' element={<HomeAdmin/>}/>
         <Route exact path='/getuse' element={<UsersList/>}/>
+        <Route exact path='/admin' element={<Admin/>}/>
+        <Route exact path='/getmanager' element={<ManagerList/>}/>
+        <Route exact path='/addmanager' element={<AddManager/>}/>
 
         </Routes>
       </Router>

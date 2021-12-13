@@ -79,14 +79,42 @@ exports.getUsers = async (req, res) => {
   };
 //add manager
 exports.addManager=async(req,res)=>{
+    let {firstName,email,password,phone,adress,signDate,userRole} =req.body
     try {
-        let newManager=await new  User(req.body)
-        newManager.save()
-        res.send(newManager);
+        let existUser=await User.findOne({email})
+        if(existUser){
+            res.status(400).json({msg:'this email have a account here'})
+        }
+         let newUser=new User({
+         firstName,
+         email,
+         password,
+         phone,
+         adress,
+         signDate,
+         userRole
+         })
+         let salt=await bc.genSalt(10);
+         let hash=await bc.hashSync(password,salt)
+         newUser.password=hash
+         await newUser.save()
+         let payload={
+             id:newUser._id,
+             name:newUser.firstName,
+             role:newUser.userRole
+
+         }
+        let token=jwt.sign(payload,secret)
+         res.send(
+             {token,
+        newUser
+
+            });
     } catch (error) {
-        res.status(500).json({errors: error.message})
+        res.status(500).json({error:error.message})
     }
 }
+            
 //update manager
 exports.putManager=async(req,res)=>{
     try {

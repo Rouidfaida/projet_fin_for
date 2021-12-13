@@ -1,4 +1,4 @@
-import { ADD_USER, ADD_USER_FAIL, ADD_USER_SUCCESS, GET_USER, GET_USER_FAIL, GET_USER_SUCCESS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, PROFILE, PROFILE_FAIL, PROFILE_SUCCESS, SIGN_UP, SIGN_UP_FAIL, SIGN_UP_SUCCESS } from "./userActionType"
+import { ADD_USER, ADD_USER_FAIL, ADD_USER_SUCCESS, DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, GET_USER, GET_USER_FAIL, GET_USER_SUCCESS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, PROFILE, PROFILE_FAIL, PROFILE_SUCCESS, SIGN_UP, SIGN_UP_FAIL, SIGN_UP_SUCCESS } from "./userActionType"
 import axios from 'axios'
 
 
@@ -87,9 +87,31 @@ export const getUsers=()=>async(dispatch)=>{
         })
     }
 }
-//add manager
-export const addProduct = (newUser) => async (dispatch) => {
-    dispatch({ type: ADD_USER });
+// //add manager
+// export const addManers = (newUser) => async (dispatch) => {
+//     dispatch({ type: ADD_USER });
+//     let token = localStorage.getItem("token");
+//     let config = {
+//       headers: {
+//           Authorization: token,
+//       }
+//     };
+//     try {
+//       const res = await axios.post("/user/addManager",newUser,config);
+      
+//       dispatch({
+//         type: ADD_USER_SUCCESS,
+//         payload: res.data,
+//       });
+//     } catch (error) {
+//       dispatch({
+//         type: ADD_USER_FAIL,
+//         payload: error.response.data,
+//       });
+//     }
+//   };
+  export const deleteUser = (id) => async (dispatch) => {
+    dispatch({ type: DELETE_USER });
     let token = localStorage.getItem("token");
     let config = {
       headers: {
@@ -97,15 +119,15 @@ export const addProduct = (newUser) => async (dispatch) => {
       }
     };
     try {
-      const res = await axios.post("/user/postProduct",newUser,config);
+      const res = await axios.delete(`/user/deleteManager/${id}`,config);
       
       dispatch({
-        type: ADD_USER_SUCCESS,
+        type: DELETE_USER_SUCCESS,
         payload: res.data,
       });
     } catch (error) {
       dispatch({
-        type: ADD_USER_FAIL,
+        type: DELETE_USER_FAIL,
         payload: error.response.data,
       });
     }

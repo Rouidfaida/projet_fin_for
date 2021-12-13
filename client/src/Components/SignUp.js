@@ -21,6 +21,7 @@ const [email, setEmail] = useState('')
 const [phone, setPhone] = useState('')
 const [address, setAddress] = useState('')
 const [password, setPassword] = useState('')
+// const [userRole, setUserRole] = useState('')
 const dispatch = useDispatch()
 const handleSubmit=(e)=>{
   email.trim()===""||firstName.trim()===""||address.trim()===""||phone.trim()===""||password.trim()===""?
@@ -61,7 +62,12 @@ alert('success signup')}
    <div class="input">
     <label class="input-label">Number <span style={{color:"red"}}>(*)</span></label>
     <input class="input-field"  type="text"  required="required"  value={phone} onChange={e=>setPhone(e.target.value)}  />
-   </div>
+ </div>
+  {/* <div class ="input">
+    <label class="input-label">User role <span style={{color:"red"}}>(*)</span></label>
+
+    <input class="input-field"  type="text"  required="required"  value={userRole} onChange={e=>setUserRole(e.target.value)}  />
+</div> */}
  <Link to='/login'>
   <Button variant="primary"  type="submit" onClick={handleSubmit} >
     

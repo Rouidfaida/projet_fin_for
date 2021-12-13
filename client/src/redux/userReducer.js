@@ -1,4 +1,5 @@
-import { GET_USER, GET_USER_FAIL, GET_USER_SUCCESS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, PROFILE, PROFILE_FAIL, PROFILE_SUCCESS, SIGN_UP, SIGN_UP_FAIL, SIGN_UP_SUCCESS } from "./userActionType"
+import { GET_USER, GET_USER_FAIL, GET_USER_SUCCESS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT,
+    ADD_USER,ADD_USER_FAIL,ADD_USER_SUCCESS, PROFILE, PROFILE_FAIL, PROFILE_SUCCESS, SIGN_UP, SIGN_UP_FAIL, SIGN_UP_SUCCESS, DELETE_USER_FAIL, DELETE_USER, DELETE_USER_SUCCESS } from "./userActionType"
 
 let init={
     users:null,
@@ -15,6 +16,8 @@ switch (type) {
         case LOGIN:
             case PROFILE:
                 case GET_USER:
+                  case  ADD_USER:
+                      case DELETE_USER:
         return {
             ...state,
             loading:true,
@@ -28,6 +31,8 @@ switch (type) {
               case LOGIN_FAIL:
                   case PROFILE_FAIL:
                       case GET_USER_FAIL:
+                          case ADD_USER_FAIL:
+                              case DELETE_USER_FAIL:
               return{
                   ...state,loading:false,error:payload,
               }
@@ -47,13 +52,24 @@ switch (type) {
                         ...state,loading:false,users:payload,
                         isAuth:true,errors:null
                     }
+                    case ADD_USER_SUCCESS:
+                        return{
+                            ...state,loading:false,users:[...state.users,payload]
+                        }
+                        case DELETE_USER_SUCCESS:
+                            return{
+                              
+                                        ...state,loading:false,
+                                        users:state.users.filter(el=>el._id!==payload)
+                                      
+                            }
                case LOGOUT:
                    
                 return {
                   ...state,
                   loading: false,
                   users: null,
-                  token:null
+                  token:null,
                 };
 
                  default:
