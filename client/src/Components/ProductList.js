@@ -19,7 +19,7 @@ useEffect(() => {
   }, [])
 
     return (
-        <div style={{display:"flex",flexWrap:"wrap",marginLeft:"200px",marginTop:"50px",marginRight:"150px"}}>
+        <div style={{backgroundColor:"white",display:"flex",flexWrap:"wrap",marginLeft:"200px",marginTop:"50px",marginRight:"150px"}}>
 
            {product.filter((product) => {
           if (categorySelected !== "all" ) return product.category === categorySelected

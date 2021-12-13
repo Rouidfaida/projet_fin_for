@@ -18,26 +18,24 @@ const ProductCard = ({el}) => {
 
     return (
         <div >
-          <Card  style={{marginLeft:"30px",marginBottom:"20px",width:"200px"}}>
-      <CardMedia
+          <Card  style={{marginLeft:"30px",marginBottom:"20px",width:"208px",height:"313px"}}>
+      {/* <CardMedia
         component="img"
         height="140"
         image={el.imageUrl}
         alt="green iguana"
-      />
+      /> */}
+      <img style={{marginTop:"10px",            
+}} src={el.imageUrl}/>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {el.title}
+        <Typography gutterBottom variant="h5" component="div" style={{fontSize:"12px" }}>
+           {el.title}
         </Typography>
+       
         <Typography variant="body2" color="text.secondary">
-         {el.description}
+        Prix: {el.price} dt
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-         {el.price}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-         {el.quantite}
-        </Typography>
+        
       </CardContent>
       <CardActions>
    <div style={{display:'flex'}}> 

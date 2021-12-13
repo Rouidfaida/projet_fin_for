@@ -1,3 +1,4 @@
+import { List } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { FloatingLabel, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -17,8 +18,7 @@ const Filter = () => {
       }, [dispatch]);
     return (
         <div>
-
-            <Form.Select label="categorie" value={category} onChange={handleCategory}style={{border:'none'}}>
+      <Form.Select label="categorie" value={category} onChange={handleCategory}style={{border:'none'}}>
   <option value="all">All Products</option>
   {categories.categories.map((category) => (
               <option value={ category.name} key={category._id}>

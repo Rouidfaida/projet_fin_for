@@ -10,7 +10,7 @@ const CommandeUser = (id) => {
    
     const {products} = useSelector(state => state.allproduct)
     const {cartItem} = useSelector((state) => state.cart);
-    const [qty, setQty] = useState(0)
+    const [qty, setQty] = useState(products.quantity)
 
     const dispatch = useDispatch();
     let commande = cartItem;
@@ -31,12 +31,23 @@ const CommandeUser = (id) => {
             <h2>prix unitaire :{prod.price}</h2> 
         
             <h2>prix :{prod.price*qty}</h2> 
-          {/* <select className="cartitem__select" onChange={e => setQty(e.target.value)}>
+          <select className="cartitem__select" onChange={e => setQty(e.target.value)}>
             <option value="1" value="1" >1</option>
             <option value="2" value="2">2</option>
             <option value="3" value="3">3</option>
             <option value="4" value="4">4</option>
-          </select> */}
+          </select>
+          {/* <p>
+              Quantity
+              <select value={qty} onChange={(e) => setQty(e.target.value)}>
+                {[...Array(qty).keys()].map((x) => (
+                  <option key={x + 1} value={x + 1}>
+                    {" "}
+                    {x + 1}{" "}
+                  </option>
+                ))}
+              </select>
+            </p> */}
           <Button
                       variant="contained"
                       onClick={(e) => {

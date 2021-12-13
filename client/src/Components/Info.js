@@ -34,6 +34,18 @@ let pr =products.find(el=>el._id==params.id)
             //   }}
             // >ajouter au panier</button> */}
               {/* <h2>Price :{pr.price*quantity}</h2> */}
+              
+            <p>
+              Quantity
+              <select value={quantity} onChange={(e) => setQuantity(e.target.value)}>
+                {[...Array(pr.quantityStock).keys()].map((x) => (
+                  <option key={x + 1} value={x + 1}>
+                    {" "}
+                    {x + 1}{" "}
+                  </option>
+                ))}
+              </select>
+            </p>
               <button onClick={()=>dispatch(addToCart(pr._id))}
 >add</button>
         </div>

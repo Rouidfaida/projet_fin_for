@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { loginUser, signUpUser } from '../redux/userAction'
- import {Alert,Button} from'react-bootstrap'
+ import {Alert,Button, Form} from'react-bootstrap'
 import { isEmail } from "validator";
 import './signUp.css'
 import Navbare from './Navbare'
@@ -32,53 +32,32 @@ alert('success signup')}
 
 
     return (
-      <div>
-              <Navbare/>
+      <div className='bod'>
 
-	<div class="card">
-		<div class="card-image">	
-			<h2 class="card-heading">
-				Get started
-				<small>Let us create your account</small>
-			</h2>
-		</div>
-      <form class="card-form" onSubmit={handleSubmit}>
-			<div class="input">
-    <label class="input-label">Email address <span style={{color:"red"}}>(*)</span></label>
-    <input class="input-field"  type="email"   required="required" value={email} onChange={e=>setEmail(e.target.value)} />
-    </div>
-    <div class="input">
-    <label class="input-label">Password <span style={{color:"red"}}>(*)</span> </label>
-    <input class="input-field"  type="password"  required="required"  value={password} onChange={e=>setPassword(e.target.value)}  />
-  </div>
-  <div class="input">
-    <label class="input-label">Name <span style={{color:"red"}}>(*)</span></label>
-    <input class="input-field"  type="text"  required="required" value={firstName} onChange={e=>setFirstName(e.target.value)}  />
-   </div>
-   <div class="input">
-    <label class="input-label">Addresse <span style={{color:"red"}}>(*)</span></label>
-    <input class="input-field"  type="text"  required="required" value={address} onChange={e=>setAddress(e.target.value)}  />
-   </div>
-   <div class="input">
-    <label class="input-label">Number <span style={{color:"red"}}>(*)</span></label>
-    <input class="input-field"  type="text"  required="required"  value={phone} onChange={e=>setPhone(e.target.value)}  />
- </div>
-  {/* <div class ="input">
-    <label class="input-label">User role <span style={{color:"red"}}>(*)</span></label>
-
-    <input class="input-field"  type="text"  required="required"  value={userRole} onChange={e=>setUserRole(e.target.value)}  />
-</div> */}
- <Link to='/login'>
-  <Button variant="primary"  type="submit" onClick={handleSubmit} >
-    
-    Submit
+                 <div  style={{width:"300px",padding:"30px 30px",margin: "40px auto  0 auto",height:"1000px" }}>
+         <h1>Sign Up</h1>
+         <Form >
+  <Form.Group className="mb-3" controlId="formBasicEmail">
+  <Form.Label>Nom et prènom</Form.Label>
+    <Form.Control type="text" placeholder="FullName" value={firstName} onChange={e => setFirstName(e.target.value)}/>
+    <Form.Label>Email </Form.Label>
+    <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)} />
    
+  </Form.Group>
+
+  <Form.Group className="mb-3" controlId="formBasicPassword">
+    <Form.Label>mot de passe</Form.Label>
+    <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+    <Form.Label>Numéro de téléphone</Form.Label>
+    <Form.Control type="text" placeholder="your phone please" value={phone} onChange={e => setPhone(e.target.value)} />
+  </Form.Group>
+  
+  <Button variant="primary" type="submit"onClick={handleSubmit} style={{background: 'linear-gradient(to right , #ff416c,#ff4b2b)'}} >
+    Submit
   </Button>
-  
-  </Link>
-  
-</form> 
-</div>
+</Form>    
+</div>     
+            
 </div>
     )
 }

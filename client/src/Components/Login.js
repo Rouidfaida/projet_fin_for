@@ -25,23 +25,31 @@ const {users,loading} = useSelector(state => state.alluser)
 
     return (
 
-  <div>
-    <Navbare/>
+      <div className='bod'>
 
 {                loading?<h1>...loading</h1>:localStorage.getItem('token')?<Navigate to='/homeAdmin'/>:
-<Form style={{margin:"100px 100px 400px 300px"}}>
-  <Form.Group style={{width:"300px",marginLeft:"50px"}} className="mb-3" controlId="formGroupEmail">
-    <Form.Label style={{marginLeft:'-200px'}}>Adresse Email<span style={{color:"red"}}>(*)</span></Form.Label>
-    <Form.Control type="email" required="required" value={email} onChange={e=>setEmail(e.target.value)} placeholder="Enter email" />
-  </Form.Group>
-  <Form.Group  style={{width:"300px",marginLeft:"50px"}} className="mb-3" controlId="formGroupPassword">
-    <Form.Label style={{marginLeft:'-200px'}}>Mot de passe<span style={{color:"red"}}>(*)</span></Form.Label>
-    <Form.Control type="password" placeholder="Password" required="required"  value={password} onChange={e=>setPassword(e.target.value)} />
-  </Form.Group>
-     <Button variant="primary"  type="submit"  onClick={handleSubmit}>submit</Button>
+                <div  style={{width:"300px",padding:"30px 30px",margin: "40px auto  0 auto",height:"1000px" }}>
 
-</Form>
+<h1>Login </h1>
+          <Form>
+  <Form.Group className="mb-3" controlId="formBasicEmail">
+  <Form.Label>Email </Form.Label>
+    <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)} />
+   
+  <Form.Label>Mot de passe</Form.Label>
+    <Form.Control type="password" placeholder="mot de passe" value={password} onChange={e => setPassword(e.target.value)}/>
+    
+  </Form.Group>
+        <Button style={{background: 'linear-gradient(to right , #ff416c,#ff4b2b)'}} type="submit" onClick={handleSubmit}>
+          Connecter
+        </Button>
+        <p className="text">vous n'avez pas un compte ?</p>
+        <Link to="/sign">
+          <Button  style={{background: 'linear-gradient(to right , #ff416c,#ff4b2b)'}}> Enregistrer</Button>
+        </Link>
+        </Form>  
 
+      </div>
 }
 </div>
 
