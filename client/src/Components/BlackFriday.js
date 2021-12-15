@@ -6,11 +6,11 @@ const BlackFriday = () => {
         <div>
            <Modal.Dialog>
   <Modal.Header closeButton>
-    <Modal.Title>Modal title</Modal.Title>
+    <Modal.Title>Black Friday</Modal.Title>
   </Modal.Header>
 
   <Modal.Body>
-    <p>Modal body text goes here.</p>
+    <p>Promotion</p>
   </Modal.Body>
 
   <Modal.Footer>

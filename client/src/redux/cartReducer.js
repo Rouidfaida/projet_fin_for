@@ -1,6 +1,7 @@
 
    
-import { ADD_ITEM, ADD_ITEM_FAIL, ADD_ITEM_SUCCESS, ADD_PRODUCT_TO_CART, ADD_PRODUCT_TO_CART_FAIL, ADD_PRODUCT_TO_CART_SUCCESS, DELETE_ITEM } from "./cartActionType"
+
+import { ADD_ITEM, ADD_ITEM_FAIL, ADD_ITEM_SUCCESS, ADD_PRODUCT_TO_CART, ADD_PRODUCT_TO_CART_FAIL, ADD_PRODUCT_TO_CART_SUCCESS, DELETE_ITEM, VIDER_CART } from "./cartActionType"
 
 let initial={
     commande:null,
@@ -9,7 +10,7 @@ let initial={
     // token:localStorage.getItem('token'),
     // isAuth:false,
     // shoppingCart:null
-    cartItem:[]
+    cartItems:[]
 
     
 }
@@ -30,32 +31,34 @@ export const commandeReducer=(state=initial,{payload,type})=>{
 
                                 ...state,commande:payload
                               }
-            // case ADD_ITEM:
-            //   return {
-            //    state, shoppingCart: [...state.shoppingCart, payload],
-            //  } 
-                                        
-
+            case DELETE_ITEM:
+              return {...state , cartItems :state.cartItems.filter((x) => x.id !== payload)}
+                         
+                         case VIDER_CART:
+                           return{
+                             ...state,cartItems:null,item:null
+                           }
                                 
-                                case DELETE_ITEM :
-            
-                                    return {...state , cartItem :state.cartItem.filter((x) => x.id !== payload)}
-
+                         
                                 case ADD_ITEM:
+                                  
+                             
                                   const item = payload
-                      
-                                  const existItem = state.cartItem.find((x) => x.product === item.product)
-                                  if(existItem){
-                                      return {
-                                          ...state,
-                                          cartItem: state.cartItem.map((x)=> x.product === existItem.product?item:x)
-                                      }
-                                  }else {
-                                      return{
-                                          ...state,
-                                          cartItem: [...state.cartItem,item]
-                                      }
-                                  }
+
+            const existItem = state.cartItems.find((x) => x.id === item.id)
+            if(existItem){
+                return {
+                    ...state,
+                    cartItems: state.cartItems.map((x)=> x.id === existItem.id?item:x)
+                }
+            }else {
+                return{
+                    ...state,
+                    cartItems: [...state.cartItems,item]
+                }
+            }
+                                  
+
                           default:
                             return state
                              }                     

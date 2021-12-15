@@ -4,3 +4,7 @@ export const ADD_PRODUCT_TO_CART_FAIL="ADD_PRODUCT_TO_CART_FAIL"
 
 export const ADD_ITEM="ADD_ITEM"
 export const DELETE_ITEM="DELETE_ITEM"
+export const VIDER_CART="VIDER_CART"
+
+
+

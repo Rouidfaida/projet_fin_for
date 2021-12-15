@@ -27,10 +27,12 @@ import { GiSpellBook } from 'react-icons/gi';
 
 import { Link } from 'react-router-dom';
 import { AiOutlineSearch ,AiOutlineShoppingCart} from 'react-icons/ai';
+import Swal from "sweetalert2/dist/sweetalert2.js";
 
 
 import Filter from './Filter';
 import { InputLabel } from '@mui/material';
+import { videCart } from '../redux/cartAction';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -72,29 +74,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 const Navbare = ({search,setSearch}) => {
     const logOut = () => {
-        dispatch(logout())
+      // dispatch(videCart())
+        dispatch(logout());
    }  
-   const cart = useSelector (state => state.cart);
+    const {cartItems} = useSelector (state => state.cart);
+const dispatch = useDispatch()
+const {users} = useSelector(state => state.alluser)
 
-
-        // const cartItem = useSelector((state) => state.allcommande)
-        const [category, setCategory] = useState('')
-        const {cartItem} = cart
-
-        const handleCategory = (e) => {
-            setCategory(e.target.value);
-            dispatch(filterProduct(e.target.value))
-          };
-          const dispatch = useDispatch();
-          useEffect (() => {
-            dispatch(getCategorielist());
-          }, [dispatch]);
-          // let cart=0
-          // shoppingCart.map((el)=>Number(el.quantity)).forEach((el)=>(cart+=el))
-          // console.log(cart)
-          // const getCartCount = () => {
-          //   return cartItem.cartItem.reduce((qty, item) => qty + item.qty, 0);
-          // };
+       
+   
+     
           const [anchorEl, setAnchorEl] = React.useState(null);
           const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
         
@@ -157,14 +146,7 @@ const Navbare = ({search,setSearch}) => {
               open={isMobileMenuOpen}
               onClose={handleMobileMenuClose}
             >
-              {/* <MenuItem>
-                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                  <Badge badgeContent={4} color="error">
-                    <MailIcon />
-                  </Badge>
-                </IconButton>
-                <p>Messages</p>
-              </MenuItem> */}
+              
               <MenuItem>
                 <IconButton
                   size="large"
@@ -193,61 +175,16 @@ const Navbare = ({search,setSearch}) => {
           );
           const categories = useSelector(state => state.allcategorie)
           return (
-        <div>
-            {/* <div style={{backgroundColor:"black",border: "3px  solid",height:"100px"}}>
-                <div style={{display:"flex"}}>
-                <GiSpellBook style={{marginTop:"20px",width:"50px",height:"50px",color:"orange"}}/>            <div style={{display:"block"}}>
-            <h2 style={{fontStyle:'italic',color:"white",fontSize:"20px",marginTop:"20px"}}>libraire en ligne </h2>
-            <h6 style={{color:"orange"}}>Facilite ton vie </h6>
-            </div>
-            <form style={{marginLeft:"300px",marginTop:"40px",height:"20px"}}>
-                <input type="text" style={{width:"500px",height:"30px"}} value={search} onChange={e=>setSearch(e.target.value)} />
-                <AiOutlineSearch style={{color:"white",backgroundColor:"orange",height:"28px",marginTop:"-5px",width:'28px'}}/>
-            </form>
-            <div>
-              <Link to='/commande'>
-              <AiOutlineShoppingCart />
-              {cartItem.length > 0 && (<span className="notification">{cartItem.length}</span>)}
-            {/* <span style={{color:'white'}} >{cart}</span> */}
-                {/* </Link> */}
-
-              
-           {/* <Navbar style={{backgroundColor:"#FF940C"}}>
-    <Container>
-    <NavDropdown title="Categories" id="basic-nav-dropdown" style={{color:"black"}}  name="category" value={category} onChange={handleCategory}>
-    {/* <option value="all" >All Products</option>
-    <option value="all">All Products</option>
-
-            {categories.categories.map((category) => (
-              <option value={ category.name} key={category._id}>
-                {category.name}
-              </option>
-            ))}
-          </NavDropdown> */}
+        <div style={{backgroundColor:"red"}}>
+           
+        
              
-    {/* <Filter/> 
-
-</NavDropdown>
-    <Nav className="me-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#features">Features</Nav.Link>
-      <Nav.Link href="#pricing">Pricing</Nav.Link> */}
-      {/* <Link  to="/product"  style={{color:"white",marginTop:"10px",marginLeft:"20px"}} >product
-</Link> */}
- 
-    {/* </Nav>
-    </Container>
-  </Navbar>  */} 
+    
+    
      <Box sx={{ flexGrow: 1 }} >
       <AppBar position="static">
         <Toolbar>
-        {/* <div style={{display:"flex"}}>
-                <GiSpellBook style={{marginTop:"20px",width:"50px",height:"50px",color:"orange"}}/>        
-                    <div style={{display:"block"}}>
-            <h2 style={{fontStyle:'italic',color:"white",fontSize:"20px",marginTop:"20px"}}>libraire en ligne </h2>
-            <h6 style={{color:"orange"}}>Facilite ton vie </h6>
-            </div>
-            </div> */}
+       
           <IconButton
             size="large"
             edge="start"
@@ -273,16 +210,7 @@ const Navbare = ({search,setSearch}) => {
           </Typography>
           <Box sx={{ minWidth: 130,marginLeft:"100px" }}>
       <FormControl fullWidth>
-        {/* <InputLabel id="demo-simple-select-label">Categories</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          label="Categories"
-          value={category} onChange={handleCategory}        >
-          
-           {categories.categories.map((category) => (
-          <MenuItem value={category.name}key={category._id}>{category.name}</MenuItem>   ))}
-               </Select> */}
+        
                <Filter/>
       </FormControl>
     </Box>
@@ -298,33 +226,29 @@ const Navbare = ({search,setSearch}) => {
             />
           </Search>
           <div style={{display:"flex",marginLeft:"150px"}}>
-                    {/* <Link to='/sign' style={{color:"white"}}>
-                        <h6 style={{color:"white"}}>Cree un Compte</h6>
-                    </Link> */}
+                   
                     <Link to='/login' style={{color:"white"}}>
                         <h6 style={{color:"white",marginLeft:"20px"}}>Se connecter</h6>
                     </Link>
-                    <Link  to="/login"  style={{color:"white",marginLeft:"20px"}} onClick={logOut} >
+                    <Link  to="/login"  style={{color:"white",marginLeft:"20px"}} onClick={()=>{logOut();dispatch(videCart())}} >
                   Deconnecter
                 </Link>
+                <button onClick={()=>dispatch(videCart())}>clear</button>
           
                 </div>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton> */}
+           
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
             >
-              <Badge badgeContent={cartItem.length > 0 && (<span className="notification">{cartItem.length}</span>)}
- color="error">
+            <Badge badgeContent={cartItems.length > 0 && (<span className="notification">{cartItems.length}</span>)}
+ >
                  <AiOutlineShoppingCart />
-              </Badge>
+              </Badge> 
+              {/* </Link> */}
             </IconButton>
             <Link to='/profile'>
             <IconButton
@@ -335,6 +259,7 @@ const Navbare = ({search,setSearch}) => {
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
             >
+         
               <AccountCircle />
             </IconButton>
             </Link>

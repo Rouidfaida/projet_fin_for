@@ -16,12 +16,14 @@ export const productReducer=(state=initial,{payload,type})=>{
             case ADD_PRODUCT:
                 case EDIT_PRODUCT:
                     case DELETE_PRODUCT:
+                        case PRODUCT_GET_ID:
             return{...state,loading:true
             }
             case PRODUCT_GET_FAIL:
                 case ADD_PRODUCT_FAIL:
                     case EDIT_PRODUCT_FAIL:
                         case DELETE_PRODUCT_FAIL:
+                            case PRODUCT_GET_ID_FAIL:
                 return{
                     ...state,error:payload,loading:false    
                           }
@@ -36,6 +38,10 @@ export const productReducer=(state=initial,{payload,type})=>{
 
                         isAuth:true,errors:null, 
             }
+            case PRODUCT_GET_ID_SUCCESS:
+                return{
+                    ...state,products:payload
+                }
             case EDIT_PRODUCT_SUCCESS:
                 return{
                     ...state,loading:false,

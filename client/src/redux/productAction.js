@@ -20,6 +20,25 @@ try {
     }) 
 }
 }
+// export const getProductId=(id)=>async(dispatch)=>{
+// dispatch({
+//     type:PRODUCT_GET_ID
+// })
+// try {
+//   const res = await axios.get(`/product/getProductById/${id}`)
+//   console.log(res)
+//     dispatch({
+//         type:PRODUCT_GET_ID_SUCCESS,
+//         payload:res.data,
+//     })
+// } catch (error) {
+//    dispatch({
+//        type:PRODUCT_GET_ID_FAIL,
+//        payload:error.response.data
+//     }) 
+// }
+// }
+
 export const filterProduct=(categorifilter)=>async(dispatch)=>{
   dispatch({
     type:PRODUCT_FILTER,

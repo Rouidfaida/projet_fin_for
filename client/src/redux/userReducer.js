@@ -8,6 +8,7 @@ let init={
     token:localStorage.getItem('token'),
     isAuth:false,
     isAdmin:null,
+
 }
 
 export const userReducer=(state=init,{payload,type})=>{

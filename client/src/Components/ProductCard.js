@@ -11,10 +11,13 @@ import { Modal, Form,Button, Col, Row } from "react-bootstrap";
 import { deleteProduct, editProduct, getProductId, getProductlist } from '../redux/productAction';
 import EditProduct from './EditProduct';
 import { getUsers } from '../redux/userAction';
+import { IconButton } from '@mui/material';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { addToCart, handelAdd } from '../redux/cartAction';
 
 const ProductCard = ({el}) => {
    
-  
+  const dispatch = useDispatch()
 
     return (
         <div >
@@ -28,26 +31,22 @@ const ProductCard = ({el}) => {
       <img style={{marginTop:"10px",            
 }} src={el.imageUrl}/>
       <CardContent>
+      <Link   to={`infos/${el._id}`}>
+
         <Typography gutterBottom variant="h5" component="div" style={{fontSize:"12px" }}>
            {el.title}
         </Typography>
-       
+        </Link>
+
         <Typography variant="body2" color="text.secondary">
         Prix: {el.price} dt
         </Typography>
         
       </CardContent>
       <CardActions>
-   <div style={{display:'flex'}}> 
-  
+      <button className="btn cart"> buy now</button>
 
-      <Button size="small">Share</Button>
-      <Link   to={`infos/${el._id}`}>
-       
-<Button>get</Button>
-
-</Link>
-</div>
+     
       </CardActions>
     </Card>
    
