@@ -20,6 +20,8 @@ import ManagerList from './Components/ManagerList';
 import AddManager from './Components/AddManager';
 import BlackFriday from './Components/BlackFriday';
 import Profile from './Components/Profile';
+import CategorieList from './Components/CategorieList';
+import ProductListAdmin from './Components/ProductListAdmin';
 // import 'antd/dist/antd.css';
 function App() {
   
@@ -44,6 +46,8 @@ function App() {
         <Route exact path='/addmanager' element={<AddManager/>}/>
         <Route exact path='/blackFriday' element={<BlackFriday/>}/>
         <Route exact path='/profile' element={<Profile/>}/>
+        <Route exact path='/categ' element={<CategorieList/>}/>
+        <Route exact path='/prod' element={<ProductListAdmin/>}/>
 
         </Routes>
       </Router>

@@ -25,8 +25,8 @@ const Manager = () => {
           
       }, [])
     return (
-        <div>  
-            <Navbare/>
+        <div> 
+            <Navbare/> 
 <ProductListAdmin product={products}/>
 <CategorieList categorie={categories}/>
 <Link to='/getuse'>

@@ -27,11 +27,14 @@ import { GiSpellBook } from 'react-icons/gi';
 
 import { Link } from 'react-router-dom';
 import { AiOutlineSearch ,AiOutlineShoppingCart} from 'react-icons/ai';
+
+import { MdOutlineRemoveShoppingCart} from 'react-icons/md';
+
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
 
 import Filter from './Filter';
-import { InputLabel } from '@mui/material';
+import { Button, InputLabel } from '@mui/material';
 import { videCart } from '../redux/cartAction';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -233,7 +236,7 @@ const {users} = useSelector(state => state.alluser)
                     <Link  to="/login"  style={{color:"white",marginLeft:"20px"}} onClick={()=>{logOut();dispatch(videCart())}} >
                   Deconnecter
                 </Link>
-                <button onClick={()=>dispatch(videCart())}>clear</button>
+                {/* <button onClick={()=>dispatch(videCart())}>clear</button> */}
           
                 </div>
           <Box sx={{ flexGrow: 1 }} />
@@ -248,7 +251,7 @@ const {users} = useSelector(state => state.alluser)
  >
                  <AiOutlineShoppingCart />
               </Badge> 
-              {/* </Link> */}
+              <MdOutlineRemoveShoppingCart style={{marginLeft:"10px"}}  onClick={()=>dispatch(videCart())}/>
             </IconButton>
             <Link to='/profile'>
             <IconButton

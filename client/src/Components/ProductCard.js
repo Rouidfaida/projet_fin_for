@@ -44,7 +44,6 @@ const ProductCard = ({el}) => {
         
       </CardContent>
       <CardActions>
-      <button className="btn cart"> buy now</button>
 
      
       </CardActions>

@@ -85,6 +85,7 @@ let pr =products.find(el=>el._id==params.id)
             </span>
           </p>
 
+          <h2>prix :{pr.price*quantity}</h2> 
           <hr />
 
           <h4 className="mt-2">Description:</h4>

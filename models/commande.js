@@ -13,7 +13,7 @@ let commandeSchema=new Schema({
           price: Number,
         },
       ],
-   
+   bill:String,
     
     });
 module.exports=mongoose.model('Commande',commandeSchema)

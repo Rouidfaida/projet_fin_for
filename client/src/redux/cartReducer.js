@@ -36,7 +36,7 @@ export const commandeReducer=(state=initial,{payload,type})=>{
                          
                          case VIDER_CART:
                            return{
-                             ...state,cartItems:null,item:null
+                             ...state,cartItems:[]
                            }
                                 
                          
