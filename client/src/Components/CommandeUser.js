@@ -5,7 +5,9 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { addProductsCart, handelAddProductCart, handelDelete } from '../redux/cartAction';
 import Navbare from './Navbare';
-import './Commande.css'
+import './Commande.css';
+import { RiDeleteBin5Line } from 'react-icons/ri';
+
 const CommandeUser = (id) => {
    
     const {products} = useSelector(state => state.allproduct)
@@ -27,6 +29,9 @@ let total=0
               <td style={{ width: "720px" }}>
                 <h4>ARTICLE</h4>
               </td>
+              <td style={{ width: "720px" }}>
+                <h4>Titre</h4>
+              </td>
               <td style={{ width: "220px" }}>
                 <h4>QUANTITÉ</h4>
               </td>
@@ -36,6 +41,7 @@ let total=0
               <td style={{ width: "220px" }}>
                 <h4>SOUS-TOTAL</h4>
               </td>
+              
             </tr>
           </thead>
           <tbody>
@@ -49,18 +55,11 @@ let total=0
                     src={el.imageUrl}
                     alt=""
                   />
-                  <div>
-                    <p className="title">{el.title}</p>
-                    <Button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        dispatch(handelDelete(el.id));
-                      }}
-                    >
-                      supprimer
-                    </Button>
-                  </div>
-                </td>
+                  </td>
+                  <td>
+                    <h5>{el.title}</h5>
+                  
+                  </td>
                 <td>
                   {" "}
                   <p>{Number(el.qty)}</p>
@@ -73,24 +72,35 @@ let total=0
                 </td>
                 <td>
                   <p>{Number(el.price) * Number(el.qty)}</p>
+                
                 </td>
+                <td>  <RiDeleteBin5Line
+                      onClick={(e) => {
+                        e.preventDefault();
+                        dispatch(handelDelete(el.id));
+                      }}
+                   style={{color:"red",fontSize:"40px"}} />
+                      
+                  </td>
               </tr>
             ))}
-            <tr>
+            <tr >
               {cartItems
                 .map((el) => Number(el.price) * Number(el.qty))
                 .forEach((sousTotal) => (total += sousTotal))}
-              <td></td>
-              <td></td>
-              <td>
+               <td  >
                 <h4>TOTAL:</h4>
               </td>
-              <td>
+              <td ></td>
+              <td ></td>
+              <td ></td>
+            
+              <td >
                 <h4>{`${total} DT`}</h4>
               </td>
             </tr>
           </tbody>
-          <Button
+          <Button 
             onClick={(e) => {
               e.preventDefault();
               dispatch(addProductsCart({ commande }));

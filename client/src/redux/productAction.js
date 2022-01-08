@@ -45,7 +45,7 @@ export const filterProduct=(categorifilter)=>async(dispatch)=>{
     payload:categorifilter
   })
 }
-export const addProduct = (newProduct) => async (dispatch) => {
+export const addProduct = (newproduct) => async (dispatch) => {
   dispatch({ type: ADD_PRODUCT });
   let token = localStorage.getItem("token");
   let config = {
@@ -53,8 +53,9 @@ export const addProduct = (newProduct) => async (dispatch) => {
         Authorization: token,
     }
   };
+
   try {
-    const res = await axios.post("/product/postProduct",newProduct,config);
+    const res = await axios.post("/product/postProduct",newproduct,config);
     
     dispatch({
       type: ADD_PRODUCT_SUCCESS,

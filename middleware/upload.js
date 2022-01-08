@@ -19,9 +19,7 @@ var upload = multer({
       file.mimetype == "image/jpg" ||
       file.mimetype == "image/jpeg"
     ) {
-
       cb(null, true);
-      
     } else {
       console.log("only jpeg and png are supported");
       cb(null, false);

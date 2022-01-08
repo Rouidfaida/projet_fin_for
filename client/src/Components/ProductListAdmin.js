@@ -17,14 +17,17 @@ useEffect(() => {
       
   }, [])
     return (
-            
+      <div>
+            <div style={{display:"flex",marginLeft:"250px",justifyContent:"center"}}> <AddCategorie/>
+            <AddProduct/> 
+            </div>
         <div style={{display:"flex",flexWrap:"wrap",marginLeft:"200px",marginTop:"50px",marginRight:"150px"}}>
-                        <AddCategorie/>
-<AddProduct/> 
+                       
            {product.filter((product) => {
           if (categorySelected !== "all" ) return product.category === categorySelected
           else return true 
         }).map((el,i) => <ProductCartAdmin el={el} key={i} />)}
+        </div>
         </div>
     )
 }

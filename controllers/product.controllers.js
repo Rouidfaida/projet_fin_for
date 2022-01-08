@@ -1,20 +1,23 @@
 const Product = require("../models/product");
 //add product
+const path = require("path");
+const cloudinary=require('../utils/cloudinary')
+const upload=require('../utils/multer')
+
 exports.addProducts = async (req, res) => {
-  console.log(req.file);
-
-  const { title, description, quantity, imageUrl ,category,price,quantityStock,} = req.body;
-
+  const result=await cloudinary.uploader.upload(req.file.path) 
   const newProduct = new Product({
-   
-    title,
-    description,
-    quantity,
-    price,
-    category,quantityStock,
-    imageUrl
-  });
- 
+
+      title:req.body.title,
+      description:req.body.description,
+      quantity:req.body.quantity,
+      price:req.body.price,
+      category:req.body.category,
+      quantityStock:req.body.quantityStock,
+      imageUrl:result.secure_url,
+      cloudinary_id:result.public_id})
+        
+
   try {
     await newProduct.save();
     res.send(newProduct);

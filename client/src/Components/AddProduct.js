@@ -1,4 +1,5 @@
 import axios from "axios";
+import { path } from "express/lib/application";
 import React, { useState } from "react";
 import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,12 +16,17 @@ const AddProduct = () => {
   const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState("");
   const [date_product, setDate_product] = useState("");
+  const [imageUrl, setImageUrl] = useState("")
   const [quantityStock, setQuantityStock] = useState("");
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [imageUrl, setImageUrl] = useState();
+  const [file, setFile] = useState();
+  const formData = new FormData();
+  if (file) {formData.append("imageUrl", file )}
+ console.log(file)
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -28,7 +34,7 @@ const AddProduct = () => {
       addProduct({
         title,
         description,
-        imageUrl,
+        file,
         price,
         category,
         quantity,
@@ -38,7 +44,6 @@ const AddProduct = () => {
       setTitle("")
       setCategory("")
       setDescription("")
-      setImageUrl("")
       setQuantity("")
       setPrice("")
       setQuantityStock("")
@@ -57,10 +62,8 @@ const AddProduct = () => {
         <Modal.Header closeButton>
           <Modal.Title> Ajouter le produit</Modal.Title>
         </Modal.Header>
-        <Form
-          style={{ marginLeft: "10px", marginTop: "10px" }}
-          onSubmit={handleSubmit}
-        >
+        <form action="/postProduct" method="POST" enctype="multipart/form-data">
+
           <Form.Group
             as={Row}
             className="mb-3"
@@ -86,19 +89,7 @@ const AddProduct = () => {
             <Form.Label column sm="2">
               image
             </Form.Label>
-            <Col sm="10">
-              <form
-                method="post"
-                action="/postProduct"
-                enctype="multipart/form-data"
-              >
-                <input
-                  type="text"
-                  value={imageUrl}
-                  onChange={(e) => setImageUrl(e.target.value)}
-                />
-              </form>
-            </Col>
+           
           </Form.Group>
           <Form.Group
             as={Row}
@@ -187,13 +178,28 @@ const AddProduct = () => {
               />
             </Col>
           </Form.Group>
-        </Form>
+          <Col sm="10">
+          <input type="file" name="imageUrl" onChange={(e) => setFile(e.target.value)}/>
 
+          </Col>
+</form>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleSubmit}>
+          <Button variant="primary"  onClick={() => {
+ dispatch(
+      addProduct({
+       title,
+        description,
+        price,
+        category,
+        quantity,
+        quantityStock,
+      imageUrl:file
+        
+      }))
+      }}>
             Save
           </Button>
         </Modal.Footer>

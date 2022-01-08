@@ -28,8 +28,11 @@ const ProductCard = ({el}) => {
         image={el.imageUrl}
         alt="green iguana"
       /> */}
-      <img style={{marginTop:"10px",            
-}} src={el.imageUrl}/>
+      {/* <img style={{marginTop:"10px",            
+}} src={el.imageUrl}/> */}
+            <Link to=''><img src={el.imageUrl} alt={el.title} /></Link>
+
+
       <CardContent>
       <Link   to={`infos/${el._id}`}>
 

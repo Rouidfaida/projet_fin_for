@@ -10,7 +10,7 @@ import Navbare from './Navbare';
 import './Info.css'
 // import { useHistory } from "react-router";
 
-const Info = ({match}) => {
+const Info = () => {
   
     const dispatch = useDispatch()
     const {products} = useSelector(state => state.allproduct)

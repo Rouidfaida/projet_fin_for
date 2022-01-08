@@ -45,7 +45,7 @@ const Home = () => {
             el.title.toLowerCase().includes(search.toLowerCase())
           )}
         />
-        {days == 6 ? <Navigate to="/blackFriday" /> : <></>}
+        {days == 1 ? <Navigate to="/blackFriday" /> : <></>}
       </div>
     </div>
   );

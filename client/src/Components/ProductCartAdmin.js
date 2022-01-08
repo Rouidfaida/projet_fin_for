@@ -18,15 +18,14 @@ const ProductCartAdmin = ({el}) => {
 
     return (
         <div>
-                  <Card  style={{marginLeft:"30px",marginBottom:"20px",width:"200px"}}>
-      <CardMedia
+          <Card  style={{marginLeft:"30px",marginBottom:"20px",width:"208px",height:"313px"}}>
+      {/* <CardMedia
         component="img"
-        height="140"
-        image={el.imageUrl}
+        image={`http://localhost:5000/${pizza.avatar}`}
         alt="green iguana"
-      />
+      /> */}
 
-      {/* <img src={`http://localhost:5000/${el.imageUrl}`}/> */}
+      <img src={`http://localhost:4000/${el.imageUrl}`}/>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {el.title}
@@ -49,13 +48,13 @@ const ProductCartAdmin = ({el}) => {
 }>delete</Button> */}
       </div>
 
-      <button
+      <Button
             onClick={() => {
               dispatch(deleteProduct(el._id));
               Swal.fire("Good job!", "produit removed!", "success");
             }}
           >
-delete          </button>
+delete          </Button>
        
       </CardActions>
     
