@@ -25,12 +25,12 @@ const ProductCartAdmin = ({el}) => {
         alt="green iguana"
       /> */}
 
-      <img src={`http://localhost:4000/${el.imageUrl}`}/>
+      <img src={`http://localhost:4000${el.imageUrl}`}
+/>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {el.title}
+      <Typography gutterBottom variant="h5" component="div" style={{fontSize:"12px" }}>
+           {el.title}
         </Typography>
-        
         <Typography variant="body2" color="text.secondary">
          {el.price}
         </Typography>

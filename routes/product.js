@@ -4,9 +4,8 @@ const {  addProducts, putProduct, getProduct, getProductById, deletProduct } = r
 const auth = require('../middleware/auth');
 const roleCheck = require('../middleware/role');
 const product = require('../models/product');
-const cloudinary=require('../utils/cloudinary')
-const upload=require('../utils/multer')
 let router=express.Router();
+const upload=require('../middleware/upload')
 
 
 

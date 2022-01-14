@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from 'react-bootstrap';
+import { Button,Table,thead } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -23,25 +23,25 @@ let total=0
                 {cartItems.length === 0 ? (
         <h5>votre panier est vide</h5>
       ) : (
-        <table>
+<Table striped bordered hover variant="white" style={{width:"800px",marginTop:"50px", marginLeft:"400px"}}>
           <thead>
             <tr>
-              <td style={{ width: "720px" }}>
+              <td >
                 <h4>ARTICLE</h4>
               </td>
-              <td style={{ width: "720px" }}>
+              <td >
                 <h4>Titre</h4>
               </td>
-              <td style={{ width: "220px" }}>
+              <td >
                 <h4>QUANTITÉ</h4>
               </td>
-              <td style={{ width: "220px" }}>
+              <td >
                 <h4>PRIX UNITAIRE</h4>
               </td>
-              <td style={{ width: "220px" }}>
+              <td >
                 <h4>SOUS-TOTAL</h4>
               </td>
-              
+              <td></td>
             </tr>
           </thead>
           <tbody>
@@ -74,7 +74,8 @@ let total=0
                   <p>{Number(el.price) * Number(el.qty)}</p>
                 
                 </td>
-                <td>  <RiDeleteBin5Line
+                <td> 
+                 <RiDeleteBin5Line
                       onClick={(e) => {
                         e.preventDefault();
                         dispatch(handelDelete(el.id));
@@ -88,19 +89,22 @@ let total=0
               {cartItems
                 .map((el) => Number(el.price) * Number(el.qty))
                 .forEach((sousTotal) => (total += sousTotal))}
-               <td  >
+               <td  colSpan={4}  >
                 <h4>TOTAL:</h4>
               </td>
-              <td ></td>
-              <td ></td>
-              <td ></td>
+          
             
-              <td >
+              <td>
                 <h4>{`${total} DT`}</h4>
               </td>
+              <td></td>
             </tr>
           </tbody>
-          <Button 
+        
+        </Table>
+        
+      )}
+        <Button 
             onClick={(e) => {
               e.preventDefault();
               dispatch(addProductsCart({ commande }));
@@ -108,8 +112,6 @@ let total=0
           >
             confirmer
           </Button>
-        </table>
-      )}
     </div>
 
 

@@ -1,11 +1,9 @@
 const Product = require("../models/product");
 //add product
 const path = require("path");
-const cloudinary=require('../utils/cloudinary')
-const upload=require('../utils/multer')
+
 
 exports.addProducts = async (req, res) => {
-  const result=await cloudinary.uploader.upload(req.file.path) 
   const newProduct = new Product({
 
       title:req.body.title,
@@ -14,9 +12,10 @@ exports.addProducts = async (req, res) => {
       price:req.body.price,
       category:req.body.category,
       quantityStock:req.body.quantityStock,
-      imageUrl:result.secure_url,
-      cloudinary_id:result.public_id})
-        
+      imageUrl:req.body.imageUrl})
+      if( req.file){
+        newProduct.imageUrl = req.file.path
+      }   
 
   try {
     await newProduct.save();

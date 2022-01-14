@@ -4,6 +4,8 @@ const user = require('./routes/user');
 const products=require('./routes/product')
 const categorie=require('./routes/categorie')
 const commande=require('./routes/commande')
+const upload=require('./routes/upload')
+
 const path = require('path');
 let app=express();
 connectDB()
@@ -15,6 +17,7 @@ app.use('/product',products)
 app.use('/categorie',categorie)
 app.use('/commande',commande)
 
+app.use("/product/uploads",upload);
 
 
 let PORT = process.env.PORT ||4000;

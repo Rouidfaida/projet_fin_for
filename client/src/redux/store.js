@@ -10,7 +10,7 @@ import { listreducer } from "./listReducer";
     key: 'root',
     storage: storage,
     // whitelist: ['user'] // which reducer want to store
-    blacklist:['cart']
+    // blacklist:['cart']
   };
   
   const rootReducer=listreducer
