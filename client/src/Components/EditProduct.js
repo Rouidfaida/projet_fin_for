@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import { Modal,Button, Form, Col, Row } from "react-bootstrap";
 import { useDispatch } from 'react-redux';
@@ -7,28 +8,45 @@ const EditProduct = ({el}) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [title, setTitle] = useState(el.title)
-    const [description, setDescription] = useState(el.description)
-    const [category, setCategory] = useState(el.category)
-const [price, setPrice] = useState(el.price)   
-const [quantite, setQuantite] = useState(el.quantity)
-const [imageUrl, setImageUrl] = useState(el.imageUrl)
-const [quantityStock, setquantityStock] = useState(el.quantityStock)
+//     const [title, setTitle] = useState(el.title)
+//     const [description, setDescription] = useState(el.description)
+//     const [category, setCategory] = useState(el.category)
+// const [price, setPrice] = useState(el.price)   
+// const [quantite, setQuantite] = useState(el.quantity)
+// const [imageUrl, setImageUrl] = useState(el.imageUrl)
+// const [quantityStock, setquantityStock] = useState(el.quantityStock)
+// const [file, setFile] = useState(); 
 
 const dispatch = useDispatch()
+const [storyedited, setstoryedited] = useState({});
 
-const handleSubmit=(e)=>{
-    e.preventDefault()
-    dispatch(editProduct(el._id,title,description,category,price,quantite,imageUrl,quantityStock))
-    dispatch(getProductlist())
-    setTitle('')
-    setDescription('')
-    setCategory('')
-    setPrice('')
-    setQuantite('')
-    setImageUrl('')
-    setquantityStock('')
-}
+const uploadFileHandler = async (e) => {
+  const file = e.target.files[0];
+  const bodyFormData = new FormData();
+  bodyFormData.append("file", file);
+  const { data } = await axios.post(
+      "http://localhost:3000/product/uploads",
+    bodyFormData
+  );
+  console.log(data);
+  setstoryedited({ ...storyedited, imageUrl: data });
+};
+
+
+const handleSubmit = () => {
+  dispatch(editProduct( el._id, storyedited ));}
+// const handleSubmit=(e)=>{
+//     e.preventDefault()
+//     dispatch(editProduct(el._id,title,description,category,price,{imageUrl:data},quantite,quantityStock))
+//     dispatch(getProductlist())
+//     setTitle('')
+//     setDescription('')
+//     setCategory('')
+//     setPrice('')
+//     setQuantite('')
+//     setImageUrl('')
+//     setquantityStock('')
+// }
     return (
         <div>
                 <Button  onClick={handleShow}>update</Button>
@@ -47,14 +65,18 @@ const handleSubmit=(e)=>{
             controlId="formPlaintextPassword"
           >
             <Form.Label column sm="2">
-              name
+              titre
             </Form.Label>
             <Col sm="10">
-              <input
+            <input
                 type="text"
-                value={title}
-                placeholder="name"
-                onChange={(e) => setTitle(e.target.value)}
+                placeholder="titre"
+                onChange={(e) => {
+                  setstoryedited({
+                    ...storyedited,
+                    title: e.target.value,
+                  });
+                }}
               />
             </Col>
           </Form.Group>
@@ -68,10 +90,9 @@ const handleSubmit=(e)=>{
             </Form.Label>
             <Col sm="10">
               <input
-                type="text"
-                value={imageUrl}
-                placeholder="name"
-                onChange={(e) => setImageUrl(e.target.value)}
+                type="file"
+                name='file'
+                onChange={uploadFileHandler}
               />
             </Col>
           </Form.Group>
@@ -84,11 +105,15 @@ const handleSubmit=(e)=>{
               price
             </Form.Label>
             <Col sm="10">
-              <input
+            <input
                 type="text"
-                value={price}
                 placeholder="price"
-                onChange={(e) => setPrice(e.target.value)}
+                onChange={(e) => {
+                  setstoryedited({
+                    ...storyedited,
+                    price: e.target.value,
+                  });
+                }}
               />
             </Col>
           </Form.Group>
@@ -102,11 +127,15 @@ const handleSubmit=(e)=>{
               description
             </Form.Label>
             <Col sm="10">
-              <input
+            <input
                 type="text"
-                value={description}
-                placeholder="price"
-                onChange={(e) => setDescription(e.target.value)}
+                placeholder="description"
+                onChange={(e) => {
+                  setstoryedited({
+                    ...storyedited,
+                    description: e.target.value,
+                  });
+                }}
               />
             </Col>
           </Form.Group>
@@ -119,11 +148,15 @@ const handleSubmit=(e)=>{
               categorie
             </Form.Label>
             <Col sm="10">
-              <input
+            <input
                 type="text"
-                value={category}
-                placeholder="price"
-                onChange={(e) => setCategory(e.target.value)}
+                placeholder="categorie"
+                onChange={(e) => {
+                  setstoryedited({
+                    ...storyedited,
+                    category: e.target.value,
+                  });
+                }}
               />
             </Col>
           </Form.Group>
@@ -136,11 +169,15 @@ const handleSubmit=(e)=>{
               quantite
             </Form.Label>
             <Col sm="10">
-              <input
+            <input
                 type="text"
-                value={quantite}
-                placeholder="quatite"
-                onChange={(e) => setQuantite(e.target.value)}
+                placeholder="quantitie"
+                onChange={(e) => {
+                  setstoryedited({
+                    ...storyedited,
+                    quantity: e.target.value,
+                  });
+                }}
               />
             </Col>
           </Form.Group>
@@ -154,11 +191,15 @@ const handleSubmit=(e)=>{
               quantite en stock
             </Form.Label>
             <Col sm="10">
-              <input
+            <input
                 type="text"
-                value={quantityStock}
-                placeholder="quatite"
-                onChange={(e) => setquantityStock(e.target.value)}
+                placeholder="quantitie en stock"
+                onChange={(e) => {
+                  setstoryedited({
+                    ...storyedited,
+                    quantityStock: e.target.value,
+                  });
+                }}
               />
             </Col>
           </Form.Group>

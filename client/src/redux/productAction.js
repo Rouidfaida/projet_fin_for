@@ -68,7 +68,7 @@ export const addProduct = (newproduct) => async (dispatch) => {
     });
   }
 };
-export const editProduct = (id,title,description,category,price,quantite,imageUrl,quantieStock) => async (dispatch) => {
+export const editProduct = (id,newproduct) => async (dispatch) => {
   dispatch({ type: EDIT_PRODUCT });
   let token = localStorage.getItem("token");
   let config = {
@@ -76,7 +76,6 @@ export const editProduct = (id,title,description,category,price,quantite,imageUr
         Authorization: token,
     }
   };
-  let newproduct={id,title,description,category,price,quantite,imageUrl,quantieStock}
 
   try {
     const res = await axios.put(`/product/putProduct/${id}`,newproduct,config);

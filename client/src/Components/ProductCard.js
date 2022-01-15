@@ -30,7 +30,8 @@ const ProductCard = ({el}) => {
       /> */}
       {/* <img style={{marginTop:"10px",            
 }} src={el.imageUrl}/> */}
-            <Link to=''><img src={el.imageUrl} alt={el.title} /></Link>
+            <Link to=''>      <img src={`http://localhost:4000${el.imageUrl}`}/>
+</Link>
 
 
       <CardContent>
